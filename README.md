@@ -30,3 +30,31 @@ A robust, console-based banking management system implemented in **Python** leve
    ```bash
    git clone [https://github.com/coderofsoumen/secure-banking-system-python.git](https://github.com/coderofsoumen/secure-banking-system-python.git)
    cd secure-banking-system-python
+
+
+
+
+## 🖥️ Live Terminal Preview
+
+```text
+===================================
+    SECURE SQLITE BANKING SYSTEM    
+===================================
+1. Open Account
+2. Deposit Funds
+3. Withdraw Funds
+4. Check Mini-Statement
+5. Apply Interest (Savings Only)
+6. Exit
+===================================
+Enter choice (1-6): 1
+
+--- Open New Account ---
+Enter account holder's name: Soumen Shil
+Set 4-digit PIN: 1234
+Enter initial deposit (Min ₹500): 1000
+Account Type (1 for Savings, 2 for Current): 1
+
+Account Created Successfully!
+Your Account Number is: 1001 (Please preserve this)
+```
