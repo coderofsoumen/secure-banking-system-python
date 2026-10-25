@@ -18,11 +18,10 @@ class DatabaseManager:
     return conn
 
   def init_db(self):
-    """টেবিল তৈরি করে যদি আগে থেকে না থাকে।"""
     with self.get_connection() as conn:
       cursor = conn.cursor()
 
-      # Accounts টেবিল
+      # Accounts Table
       cursor.execute("""
             CREATE TABLE IF NOT EXISTS accounts (
                 acc_no INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +33,6 @@ class DatabaseManager:
             )
             """)
 
-      # Transactions টেবিল (Foreign Key সহ)
       cursor.execute("""
             CREATE TABLE IF NOT EXISTS transactions (
                 trans_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -209,7 +207,7 @@ class SavingsAccount(Account):
       db_manager: DatabaseManager,
   ):
     super().__init__(acc_no, name, pin, balance, "Savings", db_manager)
-    self.interest_rate = 0.04  # 4% বাৎসরিক সুদ
+    self.interest_rate = 0.04  
 
   def apply_interest(self):
     interest = self.get_balance() * self.interest_rate
@@ -291,7 +289,7 @@ class BankController:
       acc_type = "Savings"
       od_limit = 0.0
 
-    # ডেটাবেসে অ্যাকাউন্ট রেকর্ড তৈরি
+   
     acc_no = self.db.insert_account(name, pin, deposit, acc_type, od_limit)
     self.db.add_transaction(acc_no, "Account Opened", deposit, deposit)
 
@@ -318,7 +316,6 @@ class BankController:
       print("Error: Incorrect PIN.")
       return None
 
-    # অবজেক্ট রি-কনস্ট্রাকশন (Object-Relational Mapping logic)
     if acc_type == "Savings":
       return SavingsAccount(acc_num, name, stored_pin, balance, self.db)
     else:
